@@ -1,14 +1,17 @@
 import cv2
+from pathlib import Path
 import time
 from tqdm import tqdm
 
+MODELS = (Path(cv2.__file__).parent/'data').resolve()
 
-MODEL_FACE = cv2.CascadeClassifier('models/haarcascade_frontalface_default.xml')
-MODEL_EYE = cv2.CascadeClassifier('models/haarcascade_eye.xml')
+
+MODEL_FACE = cv2.CascadeClassifier(str(MODELS/'haarcascade_frontalface_default.xml'))
+MODEL_EYE = cv2.CascadeClassifier(str(MODELS/'haarcascade_eye.xml'))
 MODELS_PLATE = [
     cv2.CascadeClassifier(path) for path in (
-        'models/haarcascade_licence_plate_rus_16stages.xml',
-        'models/haarcascade_russian_plate_number.xml',
+        str(MODELS/'haarcascade_licence_plate_rus_16stages.xml'),
+        str(MODELS/'haarcascade_russian_plate_number.xml'),
         )]
 
 
